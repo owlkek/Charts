@@ -8,7 +8,7 @@ namespace Charts.Models
 {
 	public class Genre
 	{
-		public int Id { get; set; }
+		public int ID { get; set; }
 		public string Name { get; set; }
 
 		public virtual ICollection<GenreTrack> GenreTracks { get; set; } = new HashSet<GenreTrack>();

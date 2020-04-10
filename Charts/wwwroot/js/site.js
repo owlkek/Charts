@@ -1,4 +1,8 @@
-﻿$(document).ready(() => {
+﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+$(document).ready(() => {
     const $audio = $('audio');
 
     $audio
@@ -21,15 +25,15 @@
 
         const id = $this.prop('id');
 
-        if ($audio.data('id') != id) {
+        if ($audio.data('id') !== id) {
             $('.track-pause').removeClass('track-pause').addClass('track-play');
 
-            $.get('/Track/LoadMusic/${id}')
+            $.get(`/Track/LoadMusic/${id}`)
                 .done(data => {
                     $audio.prop('src', data);
                     $audio.data('id', id);
                     $audio[0].play();
-                });
+                }).fail(x => { console.log(x) });
         } else {
             $audio[0].play();
         }

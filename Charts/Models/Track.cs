@@ -8,7 +8,7 @@ namespace Charts.Models
 {
 	public class Track
 	{
-		public int Id { get; set; }
+		public int ID { get; set; }
 		public string Name { get; set; }
 		public DateTime DateCreated { get; set; }
 		public TimeSpan? Time { get; set; }

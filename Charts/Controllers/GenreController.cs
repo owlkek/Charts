@@ -1,36 +1,45 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MusicCharts.DAL;
+using Charts.DAL;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace MusicCharts.Controllers
+
+namespace Charts.Controllers
 {
 	public class GenreController : Controller
 	{
-		private readonly ILogger<GenreController> _logger;
+		public readonly ILogger<HomeController> _logger;
 
-		public GenreController(ILogger<GenreController> logger)
+		private IHostingEnvironment _env;
+
+		public GenreController(IHostingEnvironment env, ILogger<HomeController> logger)
 		{
+			_env = env;
 			_logger = logger;
 		}
-
 		public IActionResult Info(int id)
 		{
 			using (var db = new Context())
 			{
-				var model = db.Track.Include(x => x.SingerTracks)
-									.ThenInclude(x => x.Singer)
-									.Include(x => x.GenreTracks)
-									.ThenInclude(x => x.Genre)
-									.Where(x => x.GenreTracks.Any(y => y.IDGenre == id))
-									.ToList()
-									.SelectMany(x => x.GenreTracks)
-									.Select(x => x.Genre)
-									.FirstOrDefault();
-
+				var model = db.Track
+					.Include(x => x.SingerTrack)
+					.ThenInclude(x => x.Singer)
+					.Include(x => x.GenreTrack)
+					.ThenInclude(x => x.Genre)
+					.Where(x => x.GenreTrack.Any(y => y.IDGenre == id))
+					.ToList()
+					.SelectMany(x => x.GenreTrack)
+					.Select(x => x.Genre)
+					.FirstOrDefault();
 				return View(model);
+
 			}
 		}
+
+
+
 	}
 }
