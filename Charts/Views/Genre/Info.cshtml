@@ -1,0 +1,11 @@
+﻿@model Genre
+@{
+    ViewData["Title"] = @"Music Charts | {Model.Name}";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Name</h1>
+    <partial name="_TrackPartial" model="@Model.Tracks.OrderBy(x => x.Name)" />
+</div>
+
+<partial name="_AudioPartial" />

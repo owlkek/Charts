@@ -1,0 +1,30 @@
+﻿@model Track
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">@Model.Name</h1>
+    <br />
+    <p> Дата создания: <span>@Model.DateCreated</span></p>
+    <br />
+    <p> Время проигрывания: <span>@Model.Time</span></p>
+    <br />
+    <p>
+        Жанры :
+        @foreach (var item in Model.Genres)
+        {
+            <a asp-controller="Genre" asp-action="Info"
+               asp-route-id="@item.Name">@item.Name</a>
+        }
+    </p>
+    <p>
+        Исполнители :
+        @foreach (var item in Model.Singers)
+        {
+            <span>@item.Name</span>
+        }
+    </p>
+
+
+</div>
+

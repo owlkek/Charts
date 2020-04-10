@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Track>
+
+<div class="track-group">
+    @foreach (var track in Model)
+    {
+        <div>
+            <p>
+                <img id="@track.ID" class="track track-play" alt="" />
+                <span style="font-weight:700;">@track.Name</span> - @string.Join(", ", track.Singers.Select(x => x.Name))
+            </p>
+        </div>
+    }
+</div>
