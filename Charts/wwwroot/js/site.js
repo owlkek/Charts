@@ -25,7 +25,7 @@ $(document).ready(() => {
 
         const id = $this.prop('id');
 
-        if ($audio.data('id') !== id) {
+        if ($audio.data('id') != id) {
             $('.track-pause').removeClass('track-pause').addClass('track-play');
 
             $.get(`/Track/LoadMusic/${id}`)

@@ -17,7 +17,7 @@ namespace Charts.Controllers
 
 		private readonly IHostingEnvironment _env;
 
-		private const string musicDir = @"D:\Учеба\ВУЗ\3 курс\2й семестр\МиСПИСиТ\Практики\практика 6\Charts\Charts";
+		private const string musicDir = @"D:\Учеба\ВУЗ\3 курс\2й семестр\МиСПИСиТ\Практики\практика 6\Charts\Charts\Music";
 
 		public TrackController(IHostingEnvironment env, ILogger<TrackController> logger)
 		{
@@ -30,10 +30,10 @@ namespace Charts.Controllers
 			using (var db = new Context())
 			{
 				var track = db.Track.Include(x => x.SingerTrack)
-									.ThenInclude(x => x.Singer)
-									.Include(x => x.GenreTrack)
-									.ThenInclude(x => x.Genre)
-									.FirstOrDefault(x => x.ID == Id);
+				.ThenInclude(x => x.Singer)
+				.Include(x => x.GenreTrack)
+				.ThenInclude(x => x.Genre)
+				.FirstOrDefault(x => x.ID == Id);
 
 				if (track == null)
 				{
@@ -49,14 +49,15 @@ namespace Charts.Controllers
 				}
 
 				var buf = FileIO.ReadAllBytes(Path.Combine(musicDir, track.Path));
-				var webPath = Path.Combine("audio", $"{track.ID}{Path.GetExtension(track.Path)}");
-				var path = Path.Combine(_env.WebRootPath, webPath);
+				var webPath1 = Path.Combine("audio", $"{track.ID}{Path.GetExtension(track.Path)}");
+				var webPath2 = Path.Combine("..\\..\\..\\", "audio", $"{track.ID}{Path.GetExtension(track.Path)}");
+				var path = Path.Combine(_env.WebRootPath, webPath1);
 
 				FileIO.WriteAllBytes(path, buf);
 
 				//special path for web
-				webPath = @"" + webPath.Replace("/", @"");
-				return Json(webPath);
+				//webPath = @"" + webPath.Replace("/", @"");
+				return Json(webPath2);
 			}
 		}
 	}
