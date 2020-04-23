@@ -1,0 +1,15 @@
+﻿@model Alboum
+@{
+    ViewData["Title"] = @"Music Charts | {Model.Name}";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Name</h1>
+    <h3>@Model.Tracks.FirstOrDefault().Singers.FirstOrDefault().Name</h3>
+    <h3>Date created - @Model.DateCreated.ToString("yyyy")</h3>
+    <h3>@Model.Tracks.Count() tracks | @Math.Round(Model.Tracks.Sum(x => x.Time.Value.TotalMinutes)) minutes</h3>
+    <h3></h3>
+    <partial name="_TrackPartial" model="@Model.Tracks.OrderBy(x => x.Name)" />
+</div>
+
+<partial name="_AudioPartial" />

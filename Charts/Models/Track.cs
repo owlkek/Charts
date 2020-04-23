@@ -18,10 +18,13 @@ namespace Charts.Models
 		public virtual ICollection<GenreTrack> GenreTrack { get; set; } = new HashSet<GenreTrack>();
 		[NotMapped]
 		public virtual IEnumerable<Genre> Genres => GenreTrack.Select(x => x.Genre);
+		public virtual ICollection<ChartTrack> ChartTracks { get; set; } = new HashSet<ChartTrack>();
 
 		public virtual ICollection<SingerTrack> SingerTrack { get; set; } = new HashSet<SingerTrack>();
 		[NotMapped]
 		public IEnumerable<Singer> Singers => SingerTrack.Select(x => x.Singer);
+		public virtual ICollection<AlboumTrack> AlboumTracks { get; set; } = new HashSet<AlboumTrack>();
+
 	}
 }
 

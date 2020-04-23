@@ -52,8 +52,8 @@ namespace Charts.DAL
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			//optionsBuilder.UseSqlServer("Data Source=(localhost)\\mssqllocaldb;Database=express-mvp-db;Trusted_Connection=True;");
-			//optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;"); User ID=newlogin2;Password=password;
-			optionsBuilder.UseSqlServer("Data Source=DESKTOP-CBO4Q8H;Initial Catalog=MusicChart;Integrated Security=True");
+			//optionsBuilder.UseSqlServer("Server=(localdb)DESKTOP-CBO4Q8H\\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;"); User ID=newlogin2;Password=password;
+			optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=MusicChart;Integrated Security=True");
 			//optionsBuilder.UseSqlServer("Data Source=(192.168.0.15)\\MSSQLLocalDB;Initial Catalog=MusicCharts;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 		}
 		//Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = Charts; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False

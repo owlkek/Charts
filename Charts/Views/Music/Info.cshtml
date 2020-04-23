@@ -1,0 +1,28 @@
+﻿@model Track
+@{
+    ViewData["Title"] = "Info";
+}
+
+<h1>@Model.Name</h1>
+
+<div class="row">
+
+    <div class="col-sm-6 music-info">
+        <h3><span>Исполнитель - </span><span><a>@Model.Singers.FirstOrDefault().Name</a></span></h3>
+
+        <h3><span>Жанр - </span><span><a>@Model.Genres.FirstOrDefault().Name</a></span></h3>
+
+        <h3><span>Длительность - </span><span>@Model.Time</span></h3>
+
+        <h3><span>Дата добавления - </span><span>@Model.DateCreated.Date.ToString("yyyy-MM-dd")</span></h3>
+    </div>
+
+    <div class="col-sm-6">
+        <h3 class="music-text"><span>Информация</span></h3>
+       
+    </div>
+
+</div>
+
+
+

@@ -1,28 +1,28 @@
 ﻿@model IEnumerable<Genre>
-    @{
+@{
     ViewData["Title"] = "Music Charts";
-    }
+}
 
-    <div class="text-center">
-        <h1 class="display-4">Music Charts</h1>
+<div class="text-center">
+    <h1 class="display-4">Music Charts</h1>
 
-        <div class="track-block">
-            @foreach (var item in Model)
-            {
-                <div style="width:300px;">
-                    <h2>
-                        <a asp-controller="Genre" asp-action="Info" asp-route-id="@item.ID">@item.Name</a>
-                    </h2>
+    <div class="track-block">
+        @foreach (var item in Model)
+        {
+            <div style="width:300px;">
+                <h2>
+                    <a asp-controller="Genre" asp-action="Info" asp-route-id="@item.ID">@item.Name</a>
+                </h2>
 
-                    <partial name="_TrackPartial" model="@item.Tracks.OrderBy(x => x.Name).Take(5)" />
+                <partial name="_TrackPartial" model="@item.Tracks.OrderBy(x => x.Name).Take(5)" />
 
-                    @if (item.Tracks.Count() > 5)
-                    {
+                @if (item.Tracks.Count() > 5)
+                {
                     <p>. . .</p>
-                    }
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
     </div>
+</div>
 
-    <partial name="_AudioPartial"/>
+<partial name="_AudioPartial" />
